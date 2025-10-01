@@ -68,3 +68,39 @@
   <div id="jogo">
     <div id="quadrado"></div>
   </div>
+
+  <script>
+    let pontos = 0;
+    let quadrado = document.getElementByid("quadrado");
+    let placar = document.getElementByid("placar");
+    let jogo = document.getElementById("jogo");
+    let intervalo;
+
+    function iniciarJogo() {
+      pontos = 0;
+      placar.textContent = "Pontuação: 0";
+      moverQuadrado();
+      quadrado.style.display = "block";
+
+      intervalo = setInterval(moverQuadrado, 1000); // muda de posição a cada 1s
+    }
+
+    function moverQuadrado() {
+      let largura = jogo.clientWidth - 50;
+      let altura = jogo.clientHeight - 50;
+
+      let posX = Math.floor(Math.random() * largura);
+      let posY = Math.floor(Math.random() * altura);
+
+      quadrado.style.left = posX + "px";
+      quadrado.style.top = posY + "px";
+    }
+
+    quadrado.addEventListener("click", function() {
+      pontos++;
+      placar.textContent = "Pontuação: " + pontos;
+      moverQuadrado();
+    });
+  </script>
+</body>
+</html>
